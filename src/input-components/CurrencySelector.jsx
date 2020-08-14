@@ -9,10 +9,10 @@ const DEFAULT_VALUE = 'USD';
 
 function renderOption(currency = {}, key = 0) {
   return (
-    <option value={currency.value} key={key}>
-      {currency.value}
-      {' '}
-      {currency.symbol}
+    <option value={currency.code} key={key}>
+      {currency.code}
+      {(currency.symbol) ? ` ${currency.symbol}` : ''}
+      {(currency.emoji) ? ` ${currency.emoji}` : ''}
     </option>
   );
 }
@@ -20,27 +20,16 @@ function renderOption(currency = {}, key = 0) {
 // Using functional component style with Hooks
 
 function CurrencySelector(props = {}) {
-  const { onChange, incomingValue } = props;
-  const [selectedValue, setValue] = useState(incomingValue); // "value" is the currency's ISO code
-
-  const currencies = [
-    { value: 'USD', symbol: '$' },
-    { value: 'GBP', symbol: '£' },
-    { value: 'CNY', symbol: '¥' },
-    { value: 'EUR', symbol: '€' },
-    { value: 'INR', symbol: '₹' },
-    { value: 'JPY', symbol: '¥' },
-    { value: 'CHF', symbol: 'Fr.' },
-  ];
+  const { onChange, incomingCurrencyCode, currencies } = props;
+  const [value, setValue] = useState(incomingCurrencyCode);
 
   function onSelectChange(event) {
-    const { value } = event.target;
-    setValue(value);
-    onChange(value);
+    setValue(event.target.value);
+    onChange(event.target.value);
   }
 
   return (
-    <select className="CurrencySelector" onChange={onSelectChange} value={selectedValue}>
+    <select className="CurrencySelector" onChange={onSelectChange} value={value}>
       {currencies.map((currency, i) => renderOption(currency, i))}
     </select>
   );
@@ -48,12 +37,14 @@ function CurrencySelector(props = {}) {
 
 CurrencySelector.propTypes = {
   onChange: PropTypes.func,
-  incomingValue: PropTypes.string,
+  incomingCurrencyCode: PropTypes.string,
+  currencies: PropTypes.arrayOf(PropTypes.object),
 };
 
 CurrencySelector.defaultProps = {
   onChange: NOOP,
-  incomingValue: DEFAULT_VALUE,
+  incomingCurrencyCode: DEFAULT_VALUE,
+  currencies: [],
 };
 
 export default CurrencySelector;

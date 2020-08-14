@@ -1,6 +1,11 @@
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #363f42;
+}
+
 .App {
   text-align: center;
-  background-color: #282c34;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -10,15 +15,21 @@
   min-height: 100vmin;
 }
 
-/* .App-header {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-} */
+.App-footer {
+  font-size: 0.4em;
+  margin: 3em 0;
+}
+  .App-footer span {
+    display: inline-block;
+  }
+
+.App-credits {
+  margin-left: 2em;
+}
+
+.App-author {
+  margin: 0 0.5em;
+}
 
 a {
   color: #61dafb;
