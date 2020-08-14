@@ -6,6 +6,7 @@ This project...
 * was bootstrapped with [Create React App](./create-react.md).
 * utilizes both functional components with [hooks](https://reactjs.org/docs/hooks-overview.html), and class components.
 * uses [exchangeratesapi.io](https://exchangeratesapi.io/) as a data source.
+* is currently lacking both mobile styling and unit tests.
 
 Try out the latest build on GitHub: https://lukenickerson.github.io/react-currency-converter/
 
